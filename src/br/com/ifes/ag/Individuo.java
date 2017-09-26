@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * ricardobrasil
  */
-public class Individuo implements Constantes, Comparable<Individuo> {
+public class Individuo implements Constantes, Comparable<Individuo>, Cloneable {
 
 	public int[] cromossomo = new int[tamCromossomo];
 
@@ -41,7 +41,7 @@ public class Individuo implements Constantes, Comparable<Individuo> {
 		}
 	}
 
-	private int contemCidade(int b) {
+	public int contemCidade(int b) {
 		for(int i = 0; i < tamCromossomo; i++) {
 			if(cromossomo[i] == b) {
 				return i;
@@ -62,9 +62,12 @@ public class Individuo implements Constantes, Comparable<Individuo> {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("[");
 		for (int b : cromossomo) {
 			stringBuilder.append(b);
 		}
+		stringBuilder.append(" - " + this.getAptidao()).append("]");
+
 		return stringBuilder.toString();
 	}
 
@@ -78,6 +81,10 @@ public class Individuo implements Constantes, Comparable<Individuo> {
 
 	}
 	
-	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
 
 }

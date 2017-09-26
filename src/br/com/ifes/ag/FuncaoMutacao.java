@@ -10,7 +10,9 @@ public class FuncaoMutacao implements Constantes {
 		for (int i = 0; i < tamCromossomo; i++) {
 			int range = tamCromossomo - 1 + 1;
 			int r = new Random().nextInt(range) + 1;
-			individuo.cromossomo[i] = r;
+			if ( individuo.contemCidade(r) == -1) {
+				individuo.cromossomo[i] = r;
+			}			
 		}
 	}
 }

@@ -6,12 +6,12 @@ public class Application {
 	
 	public static void main(String[] args) {
 		// Gera populacao inicial P
-		Populacao populacao = new Populacao(10, true);
+		Populacao populacao = new Populacao(20, true);
 		
 		int geracao = 0;
-		while ( geracao <= 30) {
+		while ( populacao.getMelhorIndividuo().getAptidao() > 140) {
 			// Cria espaco para populacao np
-			Populacao novaPopulacao = new Populacao(10, false);
+			Populacao novaPopulacao = new Populacao(20, false);
 			for(int i = 0; i < populacao.getTamPopulacao(); i++) {
 				// Faco o cruzamento
 				Individuo pai = FuncaoSelecao.selecaoTorneio(populacao);
@@ -28,8 +28,9 @@ public class Application {
 			
 			populacao = novaPopulacao;
 			geracao += 1;
-			System.out.println("Geracao: " + geracao); 
-			System.out.println("Melhor Individuo: " + populacao.getMelhorIndividuo());
+			System.out.println("Geracao: " + geracao + " melhor individuo " + populacao.getMelhorIndividuo() + " populacao " + novaPopulacao); 
+			
 		}
+		System.out.println("Melhor Individuo: " + populacao.getMelhorIndividuo() +" aptidao " + populacao.getMelhorIndividuo().getAptidao());
 	}
 }
