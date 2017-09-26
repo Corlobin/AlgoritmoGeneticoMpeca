@@ -3,7 +3,7 @@ package br.com.ifes.ag;
 * ricardobrasil
 */
 public class Application {
-
+	
 	public static void main(String[] args) {
 		// Gera populacao inicial P
 		Populacao populacao = new Populacao(10, true);
