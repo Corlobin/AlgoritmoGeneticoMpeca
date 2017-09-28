@@ -11,14 +11,40 @@ public class FuncaoCruzamento implements Constantes {
 		Individuo filho = new Individuo();
 		
 		for(int i = 0; i < tamCromossomo; i++) {
-			filho.cromossomo[i] = pai.cromossomo[i];
+			if ( i % 2 == 0) {				
+				int pos = -1;
+				for(int k=0;k<tamCromossomo;k++) {
+					if(filho.cromossomo[k] == pai.cromossomo[i]) {
+						pos = i;
+					}
+				}
+				
+				int anterior=filho.cromossomo[i] ;
+				if ( pos == -1)
+					filho.cromossomo[i] = mae.cromossomo[i];
+				else {
+					filho.cromossomo[anterior] = pai.cromossomo[i];
+					filho.cromossomo[pos] = anterior;
+				}
+								
+			} else {
+				int pos = -1;
+				for(int k=0;k<tamCromossomo;k++) {
+					if(filho.cromossomo[k] == mae.cromossomo[i]) {
+						pos = i;
+					}
+				}
+				int anterior=filho.cromossomo[i] ;
+				
+				if ( pos == -1)
+					filho.cromossomo[i] = mae.cromossomo[i];
+				else {
+					filho.cromossomo[anterior] = mae.cromossomo[i];
+					filho.cromossomo[pos] = anterior;
+				}
+			}
 		}
 		
-		for(int i = Math.round(tamCromossomo/2); i < tamCromossomo; i++) {
-			if ( FuncaoAptidao.findLigacao(filho.cromossomo[i-1], mae.cromossomo[i]) != 999 &&
-				 filho.contemCidade(mae.cromossomo[i]) == -1)
-				filho.cromossomo[i] = pai.cromossomo[i];
-		}
 		
 		return filho;
 	}
