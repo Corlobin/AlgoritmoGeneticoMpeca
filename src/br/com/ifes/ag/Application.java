@@ -1,21 +1,31 @@
 package br.com.ifes.ag;
+
+import br.com.ifes.ag.grid.GRID;
+
 /**
 * ricardobrasil
 */
-public class Application {
+public class Application implements Constantes {
+	
+	public static Individuo individuoAtual;
+	
 	
 	public static void main(String[] args) {
+		
+		
 		// Gera populacao inicial P
-		Populacao populacao = new Populacao(20, true);
+		Populacao populacao = new Populacao(tamPopulacao, true);
 		
 		int geracao = 0;
-		while ( populacao.getMelhorIndividuo().getAptidao() > 130) {
+		while ( populacao.getMelhorIndividuo().getAptidao() > 115) {
 			// Cria espaco para populacao np
-			Populacao novaPopulacao = new Populacao(20, false);
+			Populacao novaPopulacao = new Populacao(tamPopulacao, false);
 			
 			// Elitismo
 			Individuo melhorIndividuo = populacao.getMelhorIndividuo();
-			novaPopulacao.individuos[0] = melhorIndividuo;
+			individuoAtual = melhorIndividuo;
+			
+			novaPopulacao.individuos[0] = melhorIndividuo;			
 			
 			for(int i = 1; i < populacao.getTamPopulacao()-1; i++) {
 				// Faco o cruzamento
@@ -39,5 +49,9 @@ public class Application {
 			
 		}
 		System.out.println("Melhor Individuo: " + populacao.getMelhorIndividuo() +" aptidao " + populacao.getMelhorIndividuo().getAptidao());
+		
 	}
+	
+	
+	
 }

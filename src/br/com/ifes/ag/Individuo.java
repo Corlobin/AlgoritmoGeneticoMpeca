@@ -25,8 +25,7 @@ public class Individuo implements Constantes, Comparable<Individuo>, Cloneable {
 		}
 		int i = 0;
 		while (i < tamCromossomo) {
-			int range = tamCromossomo - 1 + 1;
-			int b = new Random().nextInt(range) + 1;
+			int b = FuncaoSelecao.randInt(1, tamCidades);
 			if ( contemCidade(b) == -1 ) {
 				if ( i != 0 ) {
 					if (FuncaoAptidao.findLigacao(cromossomo[i-1] , cromossomo[i]) != -1) {
